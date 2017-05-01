@@ -12,3 +12,7 @@
 .language-switcher.active {
     background-color: #E5E5E5;
 }
+.red-bar {
+    border-top: 5px solid #DC0018;
+    margin-bottom: 20px;
+}
