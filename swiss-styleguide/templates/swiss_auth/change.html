@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+{% load swiss_layout %}
+
+{% block title %}
+    {% trans "Airstat BAZL Change Password" %}
+{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Airstat BAZL Change Password" %}</h1>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+    <form action="{% url 'password_change' %}" method="post" class="form-horizontal">
+        {% csrf_token %}
+        {% bootstrap_form_errors form %}
+
+        {% swiss_field form.old_password %}
+        {% swiss_field form.new_password1 %}
+        {% swiss_field form.new_password2 %}
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Change</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+
+{% endblock %}
