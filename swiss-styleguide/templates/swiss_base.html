@@ -1,0 +1,81 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'build/css/admin.css' %}">
+    <link rel="stylesheet" href="{% static 'build/css/vendors.css' %}">
+    <link rel="stylesheet" href="{% static 'build/css/print.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheets/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<div class="container container-main">
+    <header>
+        <div class="clearfix">
+            <section class="nav-services clearfix">
+                <nav class="nav-lang">
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="redirect_to" value="{{ request.path }}">
+                        <input type="submit" name="language" value="de" class="language-switcher {% if LANGUAGE_CODE == 'de' %}active{% endif %}" lang="de" title="Deutsch" aria-label="Deutsch">
+                        <input type="submit" name="language" value="fr" class="language-switcher {% if LANGUAGE_CODE == 'fr' %}active{% endif %}" lang="fr" title="Français" aria-label="Français">
+                        <input type="submit" name="language" value="it" class="language-switcher {% if LANGUAGE_CODE == 'it' %}active{% endif %}" lang="it" title="Italiano" aria-label="Italiano">
+                        <input type="submit" name="language" value="en" class="language-switcher {% if LANGUAGE_CODE == 'en' %}active{% endif %}" lang="en" title="English" aria-label="English">
+                    </form>
+                </nav>
+                <nav class="nav-service" role="navigation">
+                    {% block settings_navi %}
+                    {% if user.is_authenticated %}
+                    <ul>
+                        {% if request.user.is_superuser %}
+                            <li><a href="{% url 'admin:index' %}">{% trans "Django Administration" %}</a></li>
+                        {% endif %}
+
+                        <li><a href="{% url 'password_change' %}">{% trans "Settings" %}</a></li>
+                        <li><a href="{% url 'logout' %}?next=/">{% trans "Logout" %}</a></li>
+                    </ul>
+                    {% endif %}
+                    {% endblock %}
+                </nav>
+            </section>
+        </div>
+
+        <div class="clearfix">
+            <a href="{% url 'stats:index' %}" class="brand hidden-xs" title="back to home">
+                <img src="{% static 'build/img/logo-CH.svg' %}" onerror="this.onerror=null; this.src='{% static 'build/img/logo-CH.png' %}'" alt="back to home"/>
+                <h1>{% trans "Federal Office of Civil Aviation FOCA" %}</h1>
+            </a>
+        </div>
+    </header>
+
+    <div class="red-bar"></div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <address>
+            <span class="hidden-xs">{% trans "Federal Office of Civil Aviation FOCA" %}</span>
+            <nav class="pull-right">
+                {% block footer %}{% endblock %}
+            </nav>
+        </address>
+    </footer>
+</div>
+
+<script type="text/javascript" src="{% static 'build/js/vendors.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'build/js/main.min.js' %}"></script>
+
+{% block extrajs %}{% endblock %}
+</body>
+</html>
