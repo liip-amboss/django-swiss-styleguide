@@ -1,4 +1,5 @@
 include LICENSE
 include README
 recursive-include swiss-styleguide/templates *
+recursive-include swiss-styleguide/static *
 recursive-include swiss-styleguide/templatetags * 

@@ -1,0 +1,14 @@
+.language-switcher {
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    padding: 5px;
+    line-height: 1;
+}
+.language-switcher:hover {
+    color: #069;
+    text-decoration: underline;
+}
+.language-switcher.active {
+    background-color: #E5E5E5;
+}
