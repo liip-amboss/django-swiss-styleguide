@@ -4,7 +4,9 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # Login /Logout
-    url(r'^auth/login/$', auth_views.LoginView.as_view(), name='login'),
+    url(r'^auth/login/$', auth_views.LoginView.as_view(
+            template_name='swiss_auth/login.html'
+        ), name='login'),
     url(r'^auth/logout/$', auth_views.LogoutView.as_view(), name='logout'),
 
     # password change
