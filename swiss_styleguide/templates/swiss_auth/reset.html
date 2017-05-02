@@ -5,12 +5,12 @@
 {% load swiss_layout %}
 
 {% block title %}
-    {% trans "Airstat BAZL Reset Password" %}
+    {{ app_title }}{% trans "Reset Password" %}
 {% endblock %}
 
 {% block content %}
 
-<h1>{% trans "Airstat BAZL Reset Password" %}</h1>
+<h1>{% trans "Reset Password" %}</h1>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
     <form action="{% url 'password_reset' %}" method="post" class="form-horizontal">

@@ -18,6 +18,22 @@ It provides a basic template (swiss_base.html) with changeble blocks.
 It also provides the tag {% swiss_field %} which is an extended version of
 the bootstrap_field but with the styling ready for the swiss styleguide.
 
+Add context processor to the dict:
+
+```
+
+TEMPLATES = [{
+    ...
+    'OPTIONS': {
+        'context_processors': [
+            ...
+
+            'swiss_styleguide.context_processors.auth'
+        ],
+
+```
+
+
 Work in Progress
 
 
@@ -28,3 +44,4 @@ TODO
 * Make blocks out of everything
 * Document the blocks
 * Document the fact that there must be a 'home' 
+
