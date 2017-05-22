@@ -20,16 +20,33 @@
     <header>
         <div class="clearfix">
             <section class="nav-services clearfix">
+                {% block language_choser %}
                 <nav class="nav-lang">
                     <form action="{% url 'set_language' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="redirect_to" value="{{ request.path }}">
-                        <input type="submit" name="language" value="de" class="language-switcher {% if LANGUAGE_CODE == 'de' %}active{% endif %}" lang="de" title="Deutsch" aria-label="Deutsch">
-                        <input type="submit" name="language" value="fr" class="language-switcher {% if LANGUAGE_CODE == 'fr' %}active{% endif %}" lang="fr" title="Français" aria-label="Français">
-                        <input type="submit" name="language" value="it" class="language-switcher {% if LANGUAGE_CODE == 'it' %}active{% endif %}" lang="it" title="Italiano" aria-label="Italiano">
-                        <input type="submit" name="language" value="en" class="language-switcher {% if LANGUAGE_CODE == 'en' %}active{% endif %}" lang="en" title="English" aria-label="English">
+                        {% if 'de' in available_languages %}
+                            <input type="submit" name="language" value="de" class="language-switcher 
+                            {% if LANGUAGE_CODE == 'de' %}active{% endif %}" lang="de" title="Deutsch" aria-label="Deutsch">
+                        {% endif %}
+
+                        {% if 'fr' in available_languages %}
+                            <input type="submit" name="language" value="fr" class="language-switcher 
+                            {% if LANGUAGE_CODE == 'fr' %}active{% endif %}" lang="fr" title="Français" aria-label="Français">
+                        {% endif %}
+
+                        {% if 'it' in available_languages %}
+                            <input type="submit" name="language" value="it" class="language-switcher 
+                            {% if LANGUAGE_CODE == 'it' %}active{% endif %}" lang="it" title="Italiano" aria-label="Italiano">
+                        {% endif %}
+
+                        {% if 'en' in available_languages %}
+                            <input type="submit" name="language" value="en" class="language-switcher 
+                            {% if LANGUAGE_CODE == 'en' %}active{% endif %}" lang="en" title="English" aria-label="English">
+                        {% endif %}
                     </form>
                 </nav>
+                {% endblock %}
                 <nav class="nav-service" role="navigation">
                     {% block settings_navi %}
                     {% if user.is_authenticated %}
