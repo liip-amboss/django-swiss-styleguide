@@ -10,31 +10,32 @@
 
 {% block content %}
 
-{% block page_title %}
-    <h1>{% trans "Login" %}</h1>
-{% endblock %}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
 
-<div class="row">
-    <div class="col-md-10 col-md-offset-1">
-    <form action="{% url 'login' %}" method="post" class="form-horizontal">
-        {% csrf_token %}
-        {% bootstrap_form_errors form %}
-            {% swiss_field form.username layout='horizontal' required=True%}
-            {% swiss_field form.password layout='horizontal' required=True %}
-        </fieldset>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-        </div>
-        <hr>
-        {% block login_links %}
-        <div class="col-md-6" style="text-align: right">
-            <a href="{% url 'password_reset' %}">{% trans 'Forgot password?' %}</a>
-        </div>
+        {% block page_title %}
+            <h1>{% trans "Login" %}</h1>
         {% endblock %}
-    </form>
+
+        <form action="{% url 'login' %}" method="post" class="form-horizontal">
+            {% csrf_token %}
+            {% bootstrap_form_errors form %}
+                {% swiss_field form.username layout='horizontal' required=True%}
+                {% swiss_field form.password layout='horizontal' required=True %}
+            </fieldset>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+            <hr>
+            {% block login_links %}
+            <div class="col-md-6" style="text-align: right">
+                <a href="{% url 'password_reset' %}">{% trans 'Forgot password?' %}</a>
+            </div>
+            {% endblock %}
+        </form>
+        </div>
     </div>
-</div>
 
 {% endblock %}
