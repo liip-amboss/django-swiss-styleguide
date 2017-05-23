@@ -4,11 +4,11 @@
 <fieldset>
     <legend class="hidden-legend">{{ field.label }}</legend>
     <div class="form-group {% if field.errors %}has-error{% endif %}">
-        <label for="inputEmail3" class="col-sm-2 control-label" id="email">{% trans field.label %} {% if required %}*
+        <label for="inputEmail3" class="col-sm-3 control-label" id="email">{% trans field.label %} {% if required %}*
                 <span class="sr-only">{% trans "This field is required" %}</span>
             {% endif %}
         </label>
-        <div class="col-sm-10">
+        <div class="col-sm-9">
             {% bootstrap_field field show_label=False set_required=required%}
             {% if field.errors %}
                 {% for error in form.airport.errors %}
